@@ -1,1 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech Sustentável - Portal de Inteligência Ecológica</title>
+    <style>
+        /* Variáveis e Configurações Globais */
+        :root {
+            --primary: #1b4332;
+            --secondary: #2d6a4f;
+            --accent: #52b788;
+            --light-green: #d8f3dc;
+            --bg-light: #f8fbf9;
+            --text-dark: #212529;
+            --text-muted: #5c6760;
+            --white: #ffffff;
+            --shadow: 0 8px 30px rgba(0,0,0,0.06);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Navegação Avançada */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Modernizado */
+        .hero {
+            background: linear-gradient(135deg, rgba(27, 67, 50, 0.85) 0%, rgba(45, 106, 79, 0.7) 100%), 
+                        url('https://unsplash.com') center/cover no-repeat;
+            color: var(--white);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 30px;
+        }
+
+        .hero-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            color: #e2f0d9;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        /* Seção Geral Layout */
+        section {
+            padding: 100px 30px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 17px;
+        }
+
+        /* Painel de Estatísticas Impactantes */
+        .stats-section {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 60px 30px;
+        }
+
+        .stats-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 15px;
+            color: #d8f3dc;
+        }
+
+        /* Hub de Tecnologias (Cards Modernos) */
+        .tech-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tech-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .tech-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .tech-body {
+            padding: 30px;
+        }
+
+        .tech-body h3 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Divisória de Recursos em Destaque */
+        .feature-split {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .feature-content, .feature-image-area {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .feature-image-area img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Seção Hub de Conhecimento / Blog */
+        .blog-section {
+            background-color: rgba(45, 106, 79, 0.03);
+        }
+
+        .blog-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+        }
+
+        .blog-tag {
+            background-color: var(--light-green);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .blog-card h3 {
+            margin: 15px 0 10px;
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        /* Contato Duplo (Mapa/Info + Form) */
+        .contact-wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info-panel {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .contact-info-panel h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .info-link {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .contact-form-panel {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e0e6e2;
+            background-color: #fcfdfe;
+            border-radius: 8px;
+            outline: none;
+            transition: var(--transition);
+        }
+
 
