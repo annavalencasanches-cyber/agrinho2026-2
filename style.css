@@ -1,1 +1,481 @@
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+:root {
+    --primary: #2d6a4f;
+    --primary-dark: #1b4332;
+    --accent: #74c69d;
+    --bg-light: #f4f9f4;
+    --bg-white: #ffffff;
+    --text-dark: #2d312e;
+    --text-muted: #606662;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO E HEADER
+   ========================================================================== */
+.main-header {
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.main-header.scrolled {
+    padding: 5px 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    transition: var(--transition);
+}
+
+.nav-link:hover, .nav-link.active-link {
+    color: var(--primary);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after, .nav-link.active-link::after {
+    width: 100%;
+}
+
+/* Menu Mobile Hamburguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-dark);
+    transition: var(--transition);
+}
+
+/* ==========================================================================
+   HERO / BANNER PRINCIPAL
+   ========================================================================== */
+.hero {
+    background: linear-gradient(rgba(45, 106, 79, 0.75), rgba(27, 67, 50, 0.85)), 
+                url('https://unsplash.com') no-repeat center center/cover;
+    color: var(--bg-white);
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-content p {
+    font-size: 22px;
+    max-width: 700px;
+    margin: 0 auto 35px;
+    animation: fadeInUp 1.2s ease;
+}
+
+/* Componente de Botão */
+.btn {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--primary-dark);
+    padding: 14px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(116, 198, 157, 0.3);
+    transition: var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    background-color: var(--bg-white);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   ESTRUTURA DE SEÇÕES E LAYOUTS
+   ========================================================================== */
+.section {
+    padding: 90px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-full {
+    width: 100%;
+}
+
+.bg-alt {
+    background-color: #ebf5eb;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    color: var(--primary-dark);
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background-color: var(--accent);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: -35px;
+    margin-bottom: 45px;
+}
+
+/* Layout Sobre */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 320px;
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-img-wrapper {
+    flex: 1;
+    min-width: 320px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-img-wrapper:hover .about-img {
+    transform: scale(1.05);
+}
+
+/* Grid de Pilares (Cards) */
+.grid-pilares {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--bg-white);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--primary);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+/* ==========================================================================
+   ELEMENTOS DINÂMICOS (MÉTRICAS & ABAS)
+   ========================================================================== */
+/* Grid de Contadores */
+.grid-counters {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: center;
+}
+
+.counter-box {
+    flex: 1;
+    min-width: 200px;
+}
+
+.counter-box span {
+    font-size: 55px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.counter-box p {
+    font-size: 18px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Sistema de Abas (Tabs) */
+.tabs-container {
+    background-color: var(--bg-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--bg-light);
+    padding-bottom: 15px;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 5px;
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+    background-color: var(--bg-light);
+}
+
+.tab-btn.active {
+    color: var(--bg-white);
+    background-color: var(--primary);
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-panel h3 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE CONTATO
+   ========================================================================== */
+.form-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    background-color: var(--bg-white);
+    padding: 45px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dcdfdc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    transition: var(--transition);
+    background-color: var(--bg-light);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--primary);
+    background-color: var(--bg-white);
+    box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.15);
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--bg-white);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-dark);
+}
+
+.form-feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-feedback.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.form-feedback.hidden {
+    display: none;
+}
+
+/* ==========================================================================
+   RODAPÉ E ANIMAÇÕES
+   ========================================================================== */
+.main-footer {
+    background-color: var(--primary-dark);
+    color: var(--bg-white);
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Classes para efeito Scroll Reveal */
+.scroll-anim {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-anim.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Keyframes das Animações */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
